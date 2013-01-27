@@ -82,7 +82,7 @@ class Blocklist {
 			$this->iptablesConfig = 'compress.zlib://' . $this->iptablesConfig;
 		}
 		
-		// Create the file handles
+		// Create the file handle for the config file
 		$this->ic = fopen($this->iptablesConfig, 'w');
 	}
 	
@@ -106,7 +106,7 @@ class Blocklist {
 	 * @return void
 	 */
 	public function parse($blocklist) {
-		// If a specific blocklist file was passed use this instead
+		// Check if the blocklist file is readable
 		if (!is_readable($blocklist)) {
 			throw new Exception('Unable to read blocklist file: ' . $blocklist . '. Check ownership and permissions.');
 		}
@@ -121,7 +121,7 @@ class Blocklist {
 		
 		// Read all the lines in the blocklist file
 		while ($line = fgets($this->bl)) {
-			// Make sure the line starts with something alphanumeric (no whitespaces or comment hashes)
+			// Make sure the line starts with anything but whitespaces or comment hashes
 			if (preg_match('/^[^\s#]/', $line) === 1) {
 				// First, trim the line to drop any newlines
 				$line = trim($line);
