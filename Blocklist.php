@@ -59,7 +59,7 @@ class Blocklist {
 	## END OF CONFIG, ONLY CHANGE ANYTHING BELOW THIS LINE IF YOU WANT TO ALTER THE OUTPUT ##
 	
 	/**
-	 * These variables will hold the file handlers for the blocklist, iptables config and skeleton.
+	 * These variables will hold the file handles for the blocklist and iptables config.
 	 */
 	public $bl;
 	public $ic;
